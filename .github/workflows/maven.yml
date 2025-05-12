@@ -27,6 +27,10 @@ jobs:
         java-version: '24'
         distribution: 'temurin'
         cache: maven
+
+    - name: List files
+      run: ls -alh
+
     - name: Build with Maven
       run: mvn -B package --file DevOpsCalc/pom.xml
 
