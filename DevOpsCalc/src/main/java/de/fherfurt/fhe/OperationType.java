@@ -4,9 +4,21 @@ package de.fherfurt.fhe;
  * Enum representing the types of mathematical operations.
  */
 public enum OperationType {
+    /**
+     * Represents addition operation.
+     */
     ADD('+'),
+    /**
+     * Represents subtraction operation.
+     */
     SUBTRACT('-'),
+    /**
+     * Represents multiplication operation.
+     */
     MULTIPLY('*'),
+    /**
+     * Represents division operation.
+     */
     DIVIDE('/');
 
     private final char symbol;
@@ -16,7 +28,7 @@ public enum OperationType {
      *
      * @param symbol The character symbol representing the operation.
      */
-    OperationType(char symbol) {
+    OperationType(final char symbol) {
         this.symbol = symbol;
     }
 

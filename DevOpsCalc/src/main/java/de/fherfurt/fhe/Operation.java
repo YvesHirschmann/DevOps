@@ -4,23 +4,32 @@ package de.fherfurt.fhe;
  * The Operation class represents a mathematical operation with two operands and an operation type.
  */
 public class Operation {
+    /**
+     * First operand of the operation.
+     */
     private final double a;
+    /**
+     * Second operand of the operation.
+     */
     private final double b;
+    /**
+     * Type of the operation (addition, subtraction, multiplication, division).
+     */
     private final OperationType type;
 
     /**
      * Creates a new Operation.
      *
-     * @param a    The first operand.
-     * @param b    The second operand.
-     * @param type The type of mathematical operation.
+     * @param operand1 The first operand.
+     * @param operand2 The second operand.
+     * @param operationType The type of mathematical operation.
      */
-    public Operation(final double a,
-                     final double b,
-                     final OperationType type) {
-        this.a = a;
-        this.b = b;
-        this.type = type;
+    public Operation(final double operand1,
+                     final double operand2,
+                     final OperationType operationType) {
+        this.a = operand1;
+        this.b = operand2;
+        this.type = operationType;
     }
 
     /**
