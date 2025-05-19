@@ -14,7 +14,7 @@ public class InputHandler {
      * @param prompt The prompt message to display.
      * @return The number entered by the user.
      */
-    public double readNumber(String prompt) {
+    public double readNumber(final String prompt) {
         System.out.print(prompt);
         return scanner.nextDouble();
     }
@@ -26,7 +26,7 @@ public class InputHandler {
      * @return The corresponding OperationType.
      * @throws IllegalArgumentException If the entered symbol is invalid.
      */
-    public OperationType readOperation(String prompt) {
+    public OperationType readOperation(final String prompt) {
         System.out.print(prompt);
         char symbol = scanner.next().charAt(0);
         return OperationType.fromSymbol(symbol);
