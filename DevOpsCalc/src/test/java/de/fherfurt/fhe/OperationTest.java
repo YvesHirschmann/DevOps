@@ -28,7 +28,7 @@ class OperationTest {
     @Test
     void testMultiplication() {
         Operation op = new Operation(NUM4, NUM5, OperationType.MULTIPLY);
-        assertEquals(NUM4, op.execute());
+        assertEquals(25.0, op.execute());
     }
 
     @Test
