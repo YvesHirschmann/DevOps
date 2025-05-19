@@ -53,5 +53,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn sonar:sonar \
           -Dsonar.projectKey=DevOpsCalc \
-          -Dsonar.host.url=https://sonarqube.ai.fh-erfurt.de \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
