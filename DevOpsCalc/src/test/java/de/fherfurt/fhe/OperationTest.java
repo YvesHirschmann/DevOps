@@ -4,14 +4,31 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Unit tests for the Operation class.
+ */
 class OperationTest {
 
+    /** First operand for testing. */
     private static final double NUM1 = 2.0;
+
+    /** Second operand for testing. */
     private static final double NUM2 = 3.0;
+
+    /** Expected result of addition. */
     private static final double NUM3 = 5.0;
+
+    /** Another operand for testing. */
     private static final double NUM4 = 10.0;
+
+    /** Operand used for multiplication. */
     private static final double NUM5 = 2.5;
+
+    /** Operand representing zero. */
     private static final double NUM6 = 0.0;
+
+    /** Expected result of the multiplication test. */
+    private static final double MULTIPLICATION_RESULT = 25.0;
 
     @Test
     void testAddition() {
@@ -28,7 +45,7 @@ class OperationTest {
     @Test
     void testMultiplication() {
         Operation op = new Operation(NUM4, NUM5, OperationType.MULTIPLY);
-        assertEquals(25.0, op.execute());
+        assertEquals(MULTIPLICATION_RESULT, op.execute());
     }
 
     @Test
