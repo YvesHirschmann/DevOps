@@ -44,7 +44,7 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: "main"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB }}
 
       # Step 6: SonarQube Scan
       - name: SonarQube Analysis
