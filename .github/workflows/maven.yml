@@ -34,6 +34,10 @@ jobs:
           output: test-results.md
           show: all
 
+      # Show files 
+      - name: Show files
+        run: ls -l ./DevOpsCalc
+
       # Step 5: SonarQube Scan
       - name: SonarQube Analysis
         env:
