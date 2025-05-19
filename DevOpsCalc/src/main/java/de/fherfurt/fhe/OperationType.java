@@ -21,15 +21,18 @@ public enum OperationType {
      */
     DIVIDE('/');
 
+    /**
+     * Represents exponentiation operation.
+     */
     private final char symbol;
 
     /**
      * Constructor for OperationType.
      *
-     * @param symbol The character symbol representing the operation.
+     * @param operationSymbol The character symbol representing the operation.
      */
-    OperationType(final char symbol) {
-        this.symbol = symbol;
+    OperationType(final char operationSymbol) {
+        this.symbol = operationSymbol;
     }
 
     /**
@@ -46,9 +49,10 @@ public enum OperationType {
      *
      * @param symbol The character symbol of the operation.
      * @return The matching OperationType.
-     * @throws IllegalArgumentException If the symbol does not match any operation.
+     * @throws IllegalArgumentException If the symbol
+     * does not match any operation.
      */
-    public static OperationType fromSymbol(char symbol) {
+    public static OperationType fromSymbol(final char symbol) {
         for (OperationType type : values()) {
             if (type.symbol == symbol) {
                 return type;
