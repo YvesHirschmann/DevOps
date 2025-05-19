@@ -6,6 +6,10 @@ import java.util.Scanner;
  * Handles user input for numbers and operations.
  */
 public class InputHandler {
+
+    /**
+     * Scanner instance for reading user input.
+     */
     private final Scanner scanner = new Scanner(System.in);
 
     /**

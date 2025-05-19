@@ -3,8 +3,13 @@ package de.fherfurt.fhe;
 /**
  * Main application class for the calculator.
  */
-public class CalculatorApp {
+public final class CalculatorApp {
+
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private CalculatorApp() {}
+
     /**
      * Entry point of the calculator application.
      *
@@ -13,7 +18,8 @@ public class CalculatorApp {
     public static void main(final String[] args) {
         InputHandler input = new InputHandler();
         double num1 = input.readNumber("Enter the first number: ");
-        OperationType opType = input.readOperation("Enter the operation (+, -, *, /): ");
+        OperationType opType = input.readOperation("Enter the " +
+                "operation (+, -, *, /): ");
         double num2 = input.readNumber("Enter the second number: ");
 
         Operation operation = new Operation(num1, num2, opType);

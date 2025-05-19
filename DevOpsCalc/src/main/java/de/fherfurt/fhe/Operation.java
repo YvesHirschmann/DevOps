@@ -15,7 +15,9 @@ public class Operation {
      * @param b    The second operand.
      * @param type The type of mathematical operation.
      */
-    public Operation(final double a, final double b, final OperationType type) {
+    public Operation(final double a,
+                     final double b,
+                     final OperationType type) {
         this.a = a;
         this.b = b;
         this.type = type;
