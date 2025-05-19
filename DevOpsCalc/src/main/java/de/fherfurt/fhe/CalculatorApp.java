@@ -1,15 +1,23 @@
 package de.fherfurt.fhe;
 
+/**
+ * Main application class for the calculator.
+ */
 public class CalculatorApp {
+    /**
+     * Entry point of the calculator application.
+     *
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         InputHandler input = new InputHandler();
-        double num1 = input.readNumber("Geben Sie die erste Zahl ein: ");
-        OperationType opType = input.readOperation("Geben Sie die Rechenoperation (+, -, *, /) ein: ");
-        double num2 = input.readNumber("Geben Sie die zweite Zahl ein: ");
+        double num1 = input.readNumber("Enter the first number: ");
+        OperationType opType = input.readOperation("Enter the operation (+, -, *, /): ");
+        double num2 = input.readNumber("Enter the second number: ");
 
         Operation operation = new Operation(num1, num2, opType);
         double result = operation.execute();
 
-        System.out.println("Ergebnis: " + result);
+        System.out.println("Result: " + result);
     }
 }
