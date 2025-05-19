@@ -23,7 +23,7 @@ jobs:
 
       # Step 3: Build with Maven
       - name: Build with Maven
-        working-directory: ./DevOps
+        working-directory: ./DevOpsCalc
         run: mvn -B package
 
       # Step 4: Junit Test
