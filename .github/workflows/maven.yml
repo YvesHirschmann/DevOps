@@ -55,5 +55,4 @@ jobs:
           mvn clean verify sonar:sonar \
             -Dsonar.projectKey=DevOpsCalc \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
