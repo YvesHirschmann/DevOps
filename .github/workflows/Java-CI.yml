@@ -28,7 +28,7 @@ jobs:
 
       # Build and SonarQube Scan with Maven
       - name: Build and SonarQube analysis
-        working-directory: ./DevOpsCalc
+        working-directory: ./DevOps
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -58,7 +58,7 @@ jobs:
 
       # Docker Build
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/devopscalc:latest ./DevOpsCalc
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/devops:latest ./DevOps
 
       # Docker Login
       - name: Login to DockerHub
@@ -69,4 +69,4 @@ jobs:
 
       # Docker Push
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/devopscalc:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/devops:latest
