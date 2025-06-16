@@ -58,4 +58,5 @@ jobs:
         run: |
           mvn io.fabric8:docker-maven-plugin:0.41.0:build \
               io.fabric8:docker-maven-plugin:0.41.0:push \
+              -Ddocker.username=${{ secrets.DOCKER_USERNAME }} \
               -DskipTests

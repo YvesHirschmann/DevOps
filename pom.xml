@@ -10,7 +10,6 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <!-- this will be set in CI/CD -->
         <docker.username>unset</docker.username>
     </properties>
 
