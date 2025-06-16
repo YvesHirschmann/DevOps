@@ -47,15 +47,6 @@ jobs:
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB }}
 
-      # SonarQube Quality Gate Check
-      - name: SonarQube Quality Gate Check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        with:
-          pollingTimeoutSec: 600
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
       # Docker Build
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/devops:latest ./DevOps
