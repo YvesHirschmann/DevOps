@@ -28,7 +28,6 @@ jobs:
 
       # Build and SonarQube Scan with Maven
       - name: Build and SonarQube analysis
-        working-directory: ./DevOps
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
