@@ -10,7 +10,8 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <docker.username>${env.DOCKER_USERNAME}</docker.username>
+        <!-- this will be set in CI/CD -->
+        <docker.username>unset</docker.username>
     </properties>
 
     <dependencies>
@@ -21,6 +22,7 @@
             <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
+
         <!-- JUnit 4 (optional, for legacy tests) -->
         <dependency>
             <groupId>junit</groupId>
@@ -32,14 +34,14 @@
 
     <build>
         <plugins>
-            <!-- Surefire Plugin for running tests -->
+            <!-- Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
             </plugin>
 
-            <!-- JaCoCo Plugin for code coverage -->
+            <!-- JaCoCo for test coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -60,14 +62,14 @@
                 </executions>
             </plugin>
 
-            <!-- SonarQube Scanner -->
+            <!-- SonarQube analysis -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
             </plugin>
 
-            <!-- Docker Maven Plugin -->
+            <!-- Docker Plugin -->
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
