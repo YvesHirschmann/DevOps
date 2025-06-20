@@ -22,20 +22,24 @@ jobs:
       - name: Get latest semver tag from DockerHub
         id: get_latest_tag
         run: |
-          # Get tags from DockerHub and extract semver
-          curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/devops/tags?page_size=100" \
-          | jq -r '.results[].name' \
-          | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
-          | sort -Vr \
-          | head -n1 \
-          | xargs -I {} echo "LATEST_TAG={}" >> $GITHUB_OUTPUT
+          LATEST_TAG=$(curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/devops/tags?page_size=100" \
+            | jq -r '.results[].name' \
+            | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
+            | sort -Vr \
+            | head -n1)
+          echo "Found latest tag: $LATEST_TAG"
+          if [ -z "$LATEST_TAG" ]; then
+            echo "No valid semantic version tag found. Exiting."
+            exit 1
+          fi
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_OUTPUT
 
-      # Pull latest image
-      - name: Pull latest Docker Image
+      # Pull latest Docker image
+      - name: Pull latest Docker image
         run: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.LATEST_TAG }}
 
-      # Run container with latest tag
-      - name: Run Docker Container
+      # Run Docker container
+      - name: Run Docker container
         run: |
           docker run -d --name devops-container -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.LATEST_TAG }}
