@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       # Docker Login
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -15,12 +18,24 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Docker Image pull
-      - name: Pull Docker Image
+      # Get latest semver tag from DockerHub
+      - name: Get latest semver tag from DockerHub
+        id: get_latest_tag
         run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/devops:${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
+          # Get tags from DockerHub and extract semver
+          curl -s "https://hub.docker.com/v2/repositories/${{ secrets.DOCKER_USERNAME }}/devops/tags?page_size=100" \
+          | jq -r '.results[].name' \
+          | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' \
+          | sort -Vr \
+          | head -n1 \
+          | xargs -I {} echo "LATEST_TAG={}" >> $GITHUB_OUTPUT
 
-      # Docker Container start
+      # Pull latest image
+      - name: Pull latest Docker Image
+        run: |
+          docker pull ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.LATEST_TAG }}
+
+      # Run container with latest tag
       - name: Run Docker Container
         run: |
-          docker run -d --name devops-container -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/devops:${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
+          docker run -d --name devops-container -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.LATEST_TAG }}
