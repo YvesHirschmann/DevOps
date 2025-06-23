@@ -39,7 +39,7 @@ jobs:
 
       - name: Deploy Interactive Calculator
         run: |
-          echo "=== Deploying Interactive Calculator Application ==="
+          echo "Deploying Interactive Calculator Application ..."
           echo "Image: ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}"
           echo ""
           echo "Calculator application successfully deployed!"
@@ -53,4 +53,4 @@ jobs:
           echo "   - Multiplication (*)"
           echo "   - Division (/)"
           echo ""
-          echo "💡 Use the -it flags for interactive terminal mode!"
+
