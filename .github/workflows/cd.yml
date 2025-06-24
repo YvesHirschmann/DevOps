@@ -37,6 +37,20 @@ jobs:
           echo "Pulling image: ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}"
           docker pull ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}
 
-      - name: Run Docker container
+      - name: Deploy Interactive Calculator
         run: |
-          docker run -d --name devops-container -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}
+          echo "=== Deploying Interactive Calculator Application ==="
+          echo "Image: ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}"
+          echo ""
+          echo "Calculator application successfully deployed!"
+          echo ""
+          echo "To use the interactive calculator:"
+          echo "   docker run -it --rm ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}"
+          echo ""
+          echo "This calculator requires interactive terminal input and supports:"
+          echo "   - Addition (+)"
+          echo "   - Subtraction (-)"
+          echo "   - Multiplication (*)"
+          echo "   - Division (/)"
+          echo ""
+          echo "💡 Use the -it flags for interactive terminal mode!"

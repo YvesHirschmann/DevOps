@@ -16,15 +16,21 @@ public final class CalculatorApp {
      * @param args Command line arguments (not used).
      */
     public static void main(final String[] args) {
+        System.out.println("=== DevOps Calculator ===");
+        System.out.println("Interactive Calculator - Enter your calculations:");
+        System.out.println("Supported operations: +, -, *, /");
+        System.out.println();
+        
         InputHandler input = new InputHandler();
         double num1 = input.readNumber("Enter the first number: ");
         OperationType opType = input.readOperation(
-                "Enter the " + "operation (+, -, *, /): ");
+                "Enter the operation (+, -, *, /): ");
         double num2 = input.readNumber("Enter the second number: ");
 
         Operation operation = new Operation(num1, num2, opType);
         double result = operation.execute();
 
+        System.out.println();
         System.out.println("Result: " + result);
     }
 }
