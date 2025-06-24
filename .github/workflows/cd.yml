@@ -1,4 +1,4 @@
-name: Docker-CD Pipeline
+name: CD
 
 on:
   workflow_dispatch:
