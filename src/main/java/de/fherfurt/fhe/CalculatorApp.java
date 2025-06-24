@@ -20,7 +20,7 @@ public final class CalculatorApp {
         System.out.println("Interactive Calculator - Enter your calculations:");
         System.out.println("Supported operations: +, -, *, /");
         System.out.println();
-        
+
         InputHandler input = new InputHandler();
         double num1 = input.readNumber("Enter the first number: ");
         OperationType opType = input.readOperation(
