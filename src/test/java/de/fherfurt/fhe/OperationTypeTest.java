@@ -1,7 +1,9 @@
 package de.fherfurt.fhe;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for the OperationType enum.
@@ -23,7 +25,8 @@ class OperationTypeTest {
      */
     @Test
     void testFromSymbolInvalid() {
-        assertThrows(IllegalArgumentException.class, () -> OperationType.fromSymbol('x'));
+        assertThrows(IllegalArgumentException.class,
+            () -> OperationType.fromSymbol('x'));
     }
 
     /**
