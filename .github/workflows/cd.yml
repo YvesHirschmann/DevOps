@@ -44,13 +44,20 @@ jobs:
           echo ""
           echo "Calculator application successfully deployed!"
           echo ""
-          echo "To use the interactive calculator:"
-          echo "   docker run -it --rm ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}"
-          echo ""
           echo "This calculator requires interactive terminal input and supports:"
           echo "   - Addition (+)"
           echo "   - Subtraction (-)"
           echo "   - Multiplication (*)"
           echo "   - Division (/)"
           echo ""
+
+      - name: Run Calculator API
+        run: |
+          echo "Starting calculator via HTTP-API:"
+          echo "java -cp target/classes:target/dependency/* de.fherfurt.fhe.CalculatorApi &"
+          echo "sleep 5"
+          echo "curl 'http://localhost:8080/calculate?num1=5&num2=3&op=+'   # Addition: 8.0"
+          echo "curl 'http://localhost:8080/calculate?num1=10&num2=4&op=-'  # Subtraktion: 6.0"
+          echo "curl 'http://localhost:8080/calculate?num1=6&num2=7&op=*'   # Multiplikation: 42.0"
+          echo "curl 'http://localhost:8080/calculate?num1=20&num2=5&op=/'  # Division: 4.0"
 
