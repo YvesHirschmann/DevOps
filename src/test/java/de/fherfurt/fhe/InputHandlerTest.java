@@ -8,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Unit tests for the InputHandler class.
  *
  * Note: These tests are limited because InputHandler uses Scanner(System.in).
- * For full coverage, refactor InputHandler to allow injection of a custom Scanner.
+ * For full coverage, refactor InputHandler
+ * to allow injection of a custom Scanner.
  */
 class InputHandlerTest {
     /**

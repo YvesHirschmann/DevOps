@@ -10,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class OperationTypeTest {
     /**
-     * Tests that fromSymbol returns the correct OperationType for valid symbols.
+     * Tests that fromSymbol returns the correct
+     *  OperationType for valid symbols.
      */
     @Test
     void testFromSymbolValid() {
