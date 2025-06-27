@@ -92,6 +92,16 @@
                     </images>
                 </configuration>
             </plugin>
+
+            <!-- Exec Maven Plugin to run CalculatorApp -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>de.fherfurt.fhe.CalculatorApp</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
