@@ -54,10 +54,12 @@ jobs:
       - name: Run Calculator API
         run: |
           echo "Starting calculator via HTTP-API:"
-          echo "java -cp target/classes:target/dependency/* de.fherfurt.fhe.CalculatorApi &"
-          echo "sleep 5"
-          echo "curl 'http://localhost:8080/calculate?num1=5&num2=3&op=+'   # Addition: 8.0"
-          echo "curl 'http://localhost:8080/calculate?num1=10&num2=4&op=-'  # Subtraktion: 6.0"
-          echo "curl 'http://localhost:8080/calculate?num1=6&num2=7&op=*'   # Multiplikation: 42.0"
-          echo "curl 'http://localhost:8080/calculate?num1=20&num2=5&op=/'  # Division: 4.0"
+          java -cp target/classes:target/dependency/* de.fherfurt.fhe.CalculatorApi &
+          API_PID=$!
+          sleep 5
+          echo "Addition:        $(curl -s 'http://localhost:8080/calculate?num1=5&num2=3&op=+')"
+          echo "Subtraction:    $(curl -s 'http://localhost:8080/calculate?num1=10&num2=4&op=-')"
+          echo "Multiplication: $(curl -s 'http://localhost:8080/calculate?num1=6&num2=7&op=*')"
+          echo "Division:       $(curl -s 'http://localhost:8080/calculate?num1=20&num2=5&op=/')"
+          kill $API_PID
 
