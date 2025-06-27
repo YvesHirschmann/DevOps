@@ -6,8 +6,14 @@ import static spark.Spark.port;
 /**
  * Provides an HTTP API for the calculator.
  */
-public class CalculatorApi {
+public final class CalculatorApi {
+    /**
+     * Port for the HTTP server.
+     */
     private static final int SERVER_PORT = 8080;
+    /**
+     * HTTP status code for bad requests.
+     */
     private static final int BAD_REQUEST = 400;
 
     private CalculatorApi() {

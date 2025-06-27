@@ -57,6 +57,8 @@ public enum OperationType {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Invalid operation symbol: " + symbol);
+        throw new IllegalArgumentException(
+            "Invalid operation symbol: " + symbol
+        );
     }
 }
