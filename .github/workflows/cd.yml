@@ -62,4 +62,3 @@ jobs:
           echo "Multiplication: $(curl -s 'http://localhost:8080/calculate?num1=6&num2=7&op=*')"
           echo "Division:       $(curl -s 'http://localhost:8080/calculate?num1=20&num2=5&op=/')"
           kill $API_PID
-

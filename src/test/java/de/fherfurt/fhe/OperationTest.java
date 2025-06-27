@@ -30,30 +30,45 @@ class OperationTest {
     /** Expected result of the multiplication test. */
     private static final double MULTIPLICATION_RESULT = 25.0;
 
+    /**
+     * Tests addition operation.
+     */
     @Test
     void testAddition() {
         Operation op = new Operation(NUM1, NUM2, OperationType.ADD);
         assertEquals(NUM3, op.execute());
     }
 
+    /**
+     * Tests subtraction operation.
+     */
     @Test
     void testSubtraction() {
         Operation op = new Operation(NUM3, NUM1, OperationType.SUBTRACT);
         assertEquals(NUM2, op.execute());
     }
 
+    /**
+     * Tests multiplication operation.
+     */
     @Test
     void testMultiplication() {
         Operation op = new Operation(NUM4, NUM5, OperationType.MULTIPLY);
         assertEquals(MULTIPLICATION_RESULT, op.execute());
     }
 
+    /**
+     * Tests division operation.
+     */
     @Test
     void testDivision() {
         Operation op = new Operation(NUM4, NUM1, OperationType.DIVIDE);
         assertEquals(NUM3, op.execute());
     }
 
+    /**
+     * Tests division by zero throws exception.
+     */
     @Test
     void testDivisionByZeroThrowsException() {
         Operation op = new Operation(NUM4, NUM6, OperationType.DIVIDE);
