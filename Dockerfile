@@ -2,6 +2,9 @@ FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-COPY target/DevOps-1.0-SNAPSHOT.jar app.jar
+# Copy the built classes and dependencies
+COPY target/classes ./classes
+COPY target/dependency ./dependency
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Set the entrypoint to start the CalculatorApi HTTP server
+ENTRYPOINT ["java", "-cp", "classes:dependency/*", "de.fherfurt.fhe.CalculatorApi"]
