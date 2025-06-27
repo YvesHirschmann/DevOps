@@ -2,6 +2,7 @@ package de.fherfurt.fhe;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
+import static spark.Spark.ipAddress;
 
 /**
  * Provides an HTTP API for the calculator.
@@ -25,6 +26,7 @@ public final class CalculatorApi {
      * @param args command line arguments
      */
     public static void main(final String[] args) {
+        ipAddress("0.0.0.0");
         port(SERVER_PORT);
         get("/calculate", (req, res) -> {
             try {

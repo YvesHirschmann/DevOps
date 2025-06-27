@@ -41,15 +41,6 @@ jobs:
         run: |
           echo "Deploying Interactive Calculator Application ..."
           echo "Image: ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}"
-          echo ""
-          echo "Calculator application successfully deployed!"
-          echo ""
-          echo "This calculator requires interactive terminal input and supports:"
-          echo "   - Addition (+)"
-          echo "   - Subtraction (-)"
-          echo "   - Multiplication (*)"
-          echo "   - Division (/)"
-          echo ""
 
       - name: Run Calculator API in Docker
         run: |
