@@ -22,7 +22,7 @@ public enum OperationType {
     DIVIDE('/');
 
     /**
-     * Represents exponentiation operation.
+     * The character symbol representing the operation.
      */
     private final char symbol;
 
@@ -49,8 +49,7 @@ public enum OperationType {
      *
      * @param symbol The character symbol of the operation.
      * @return The matching OperationType.
-     * @throws IllegalArgumentException If the symbol
-     * does not match any operation.
+     * @throws IllegalArgumentException If the symbol does not match any operation.
      */
     public static OperationType fromSymbol(final char symbol) {
         for (OperationType type : values()) {
@@ -58,6 +57,6 @@ public enum OperationType {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Invalid operation: " + symbol);
+        throw new IllegalArgumentException("Invalid operation symbol: " + symbol);
     }
 }

@@ -1,8 +1,7 @@
 package de.fherfurt.fhe;
 
 /**
- * The Operation class represents a mathematical
- * operation with two operands and an operation type.
+ * The Operation class represents a mathematical operation with two operands and an operation type.
  */
 public class Operation {
     /**
@@ -38,8 +37,7 @@ public class Operation {
      *
      * @return The result of the calculation.
      * @throws ArithmeticException    If division by zero is attempted.
-     * @throws IllegalStateException If
-     * an unknown operation type is encountered.
+     * @throws IllegalStateException If an unknown operation type is encountered.
      */
     public double execute() {
         switch (type) {

@@ -1,4 +1,4 @@
 /**
- * This package contains the main application for the DevOps Calculator.
+ * This package contains the main application classes for the DevOps Calculator.
  */
 package de.fherfurt.fhe;
