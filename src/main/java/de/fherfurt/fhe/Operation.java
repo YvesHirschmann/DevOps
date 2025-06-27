@@ -38,7 +38,7 @@ public class Operation {
      *
      * @return The result of the calculation.
      * @throws ArithmeticException If division by zero is attempted.
-     * @throws IllegalStateException If an unknown 
+     * @throws IllegalStateException If an unknown
      * operation type is encountered.
      */
     public double execute() {
