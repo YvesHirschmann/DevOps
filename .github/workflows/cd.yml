@@ -51,14 +51,13 @@ jobs:
           echo "   - Division (/)"
           echo ""
 
-      - name: Run Calculator API
+      - name: Run Calculator API in Docker
         run: |
-          echo "Starting calculator via HTTP-API:"
-          java -cp target/classes:target/dependency/* de.fherfurt.fhe.CalculatorApi &
-          API_PID=$!
+          docker run -d -p 8080:8080 --name calc_api ${{ secrets.DOCKER_USERNAME }}/devops:${{ steps.get_latest_tag.outputs.latest_tag }}
           sleep 5
-          echo "Addition:        $(curl -s 'http://localhost:8080/calculate?num1=5&num2=3&op=+')"
+          echo "Addition:       $(curl -s 'http://localhost:8080/calculate?num1=5&num2=3&op=+')"
           echo "Subtraction:    $(curl -s 'http://localhost:8080/calculate?num1=10&num2=4&op=-')"
           echo "Multiplication: $(curl -s 'http://localhost:8080/calculate?num1=6&num2=7&op=*')"
           echo "Division:       $(curl -s 'http://localhost:8080/calculate?num1=20&num2=5&op=/')"
-          kill $API_PID
+          docker stop calc_api
+          docker rm calc_api
