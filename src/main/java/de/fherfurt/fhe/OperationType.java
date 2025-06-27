@@ -49,7 +49,8 @@ public enum OperationType {
      *
      * @param symbol The character symbol of the operation.
      * @return The matching OperationType.
-     * @throws IllegalArgumentException If the symbol does not match any operation.
+     * @throws IllegalArgumentException If the symbol
+     *  does not match any operation.
      */
     public static OperationType fromSymbol(final char symbol) {
         for (OperationType type : values()) {
