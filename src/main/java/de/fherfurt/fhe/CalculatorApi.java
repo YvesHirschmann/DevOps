@@ -1,54 +1,43 @@
 package de.fherfurt.fhe;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
-import static spark.Spark.ipAddress;
-
+import lombok.NoArgsConstructor;
 /**
- * Provides an HTTP API for the calculator.
+ * Service for calculator operations.
  */
+@NoArgsConstructor
 public final class CalculatorApi {
-    /**
-     * Port for the HTTP server.
-     */
-    private static final int SERVER_PORT = 8080;
-    /**
-     * HTTP status code for bad requests.
-     */
-    private static final int BAD_REQUEST = 400;
 
-    private CalculatorApi() {
-        throw new UnsupportedOperationException();
-    }
 
     /**
-     * Starts the Calculator HTTP API.
-     * @param args command line arguments
+     * Calculates the result for two numbers and an operation.
+     * @param num1 first number
+     * @param num2 second number
+     * @param op operation type (+, -, *, /)
+     * @return calculation result
      */
-    public static void main(final String[] args) {
-        ipAddress("0.0.0.0");
-        port(SERVER_PORT);
-        get("/calculate", (req, res) -> {
-            try {
-                double num1 = Double.parseDouble(req.queryParams("num1"));
-                double num2 = Double.parseDouble(req.queryParams("num2"));
-                String op = req.queryParams("op");
-                OperationType opType = switch (op) {
-                    case "+" -> OperationType.ADD;
-                    case "-" -> OperationType.SUBTRACT;
-                    case "*" -> OperationType.MULTIPLY;
-                    case "/" -> OperationType.DIVIDE;
-                    default -> throw new IllegalArgumentException(
-                        "Invalid operation: " + op
-                    );
-                };
-                Operation operation = new Operation(num1, num2, opType);
-                double result = operation.execute();
-                return String.valueOf(result);
-            } catch (Exception e) {
-                res.status(BAD_REQUEST);
-                return "Error: " + e.getMessage();
-            }
-        });
+    public double calculate(final double num1, final double num2,
+                           final String op) {
+        OperationType opType;
+        switch (op) {
+            case "+":
+                opType = OperationType.ADD;
+                break;
+            case "-":
+                opType = OperationType.SUBTRACT;
+                break;
+            case "*":
+                opType = OperationType.MULTIPLY;
+                break;
+            case "/":
+                opType = OperationType.DIVIDE;
+                break;
+            default:
+                String msg = "Invalid operation: "
+                    + op;
+                throw new IllegalArgumentException(msg);
+        }
+        Operation operation = new Operation(
+            num1, num2, opType);
+        return operation.execute();
     }
 }

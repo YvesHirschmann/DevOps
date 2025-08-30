@@ -1,14 +1,16 @@
 package de.fherfurt.fhe;
 
 import java.util.Scanner;
+import lombok.NoArgsConstructor;
 
 /**
  * Handles user input for numbers and operations.
  */
+@NoArgsConstructor
 public class InputHandler {
 
     /**
-     * Scanner instance for reading user input.
+     * Scanner for reading user input from the console.
      */
     private final Scanner scanner = new Scanner(System.in);
 

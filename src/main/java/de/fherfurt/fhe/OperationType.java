@@ -1,36 +1,25 @@
+
 package de.fherfurt.fhe;
+
+import lombok.Getter;
 
 /**
  * Enum representing the types of mathematical operations.
  */
+@Getter
 public enum OperationType {
-    /**
-     * Represents addition operation.
-     */
+    /** Addition operation. */
     ADD('+'),
-    /**
-     * Represents subtraction operation.
-     */
+    /** Subtraction operation. */
     SUBTRACT('-'),
-    /**
-     * Represents multiplication operation.
-     */
+    /** Multiplication operation. */
     MULTIPLY('*'),
-    /**
-     * Represents division operation.
-     */
+    /** Division operation. */
     DIVIDE('/');
 
-    /**
-     * The character symbol representing the operation.
-     */
+    /** Symbol representing the operation. */
     private final char symbol;
 
-    /**
-     * Constructor for OperationType.
-     *
-     * @param operationSymbol The character symbol representing the operation.
-     */
     OperationType(final char operationSymbol) {
         this.symbol = operationSymbol;
     }

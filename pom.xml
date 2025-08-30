@@ -11,48 +11,85 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <docker.username>unset</docker.username>
-        <docker.image.tag>latest</docker.image.tag> <!-- Default -->
+        <docker.image.tag>latest</docker.image.tag>
+        <junit.jupiter.version>5.10.0</junit.jupiter.version>
+        <junit.version>4.13.1</junit.version>
+        <surefire.version>3.1.2</surefire.version>
+        <jacoco.version>0.8.10</jacoco.version>
+        <sonar.version>3.9.1.2184</sonar.version>
+        <docker.plugin.version>0.46.0</docker.plugin.version>
+        <exec.plugin.version>3.1.0</exec.plugin.version>
+        <checkstyle.version>3.3.1</checkstyle.version>
+        <lombok.version>1.18.32</lombok.version>
+        <spring.boot.version>3.2.5</spring.boot.version>
     </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.3.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- JUnit 4 (optional for Legacy-Tests) -->
+        <!-- JUnit 4 (optional für Legacy-Tests) -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- SparkJava for HTTP API -->
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        <!-- Spring Boot Starter Web -->
         <dependency>
-            <groupId>com.sparkjava</groupId>
-            <artifactId>spark-core</artifactId>
-            <version>2.9.4</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Spring Boot Starter Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+            </plugin>
             <!-- Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>${surefire.version}</version>
             </plugin>
-
             <!-- JaCoCo for Testabdeckung -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -68,19 +105,17 @@
                     </execution>
                 </executions>
             </plugin>
-
             <!-- SonarQube Analyse -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
+                <version>${sonar.version}</version>
             </plugin>
-
             <!-- Docker Plugin -->
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.46.0</version>
+                <version>${docker.plugin.version}</version>
                 <configuration>
                     <images>
                         <image>
@@ -92,12 +127,25 @@
                     </images>
                 </configuration>
             </plugin>
-
+                <!-- Checkstyle Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyle.version}</version>
+                    <executions>
+                        <execution>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             <!-- Exec Maven Plugin to run CalculatorApp -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${exec.plugin.version}</version>
                 <configuration>
                     <mainClass>de.fherfurt.fhe.CalculatorApp</mainClass>
                 </configuration>
