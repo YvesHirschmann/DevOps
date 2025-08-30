@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  Build:
+  Build_and_Testing:
     runs-on: ubuntu-latest
     steps:
       # Checkout Repository
@@ -46,9 +46,14 @@ jobs:
           path: target/site/jacoco/jacoco.xml
 
   Analyse:
-    needs: [Build]
+    needs: [Build_and_Testing]
     runs-on: ubuntu-latest
     steps:
+      # Checkout Repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # Download JAR and Coverage
       - name: Download JAR
@@ -85,7 +90,7 @@ jobs:
           path: target/checkstyle-result.xml
 
   Docker:
-    needs: [Build, Analyse]
+    needs: [Build_and_Testing, Analyse]
     runs-on: ubuntu-latest
     env:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
