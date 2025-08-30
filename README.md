@@ -1,7 +1,5 @@
 # DevOps Calculator
 
-Eine interaktive Java-Konsolenanwendung für mathematische Grundrechenarten.
-
 ## Features
 - Addition, Subtraktion, Multiplikation, Division
 - HTTP-API für automatisierte Abfragen (via curl)
