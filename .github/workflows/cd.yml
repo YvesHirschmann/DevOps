@@ -77,17 +77,9 @@ jobs:
           echo "Division:       $(curl -s 'http://localhost:8080/api/calculator/calculate?a=15&b=5&operation=/')"
 
       # Shutdown Docker
-      - name: Shutdown Docker
+      - name: Shutdown Docker & remove containers/images
         run:
           docker stop calc_api || true
-
-  CleanUp:
-    runs-on: ubuntu-latest
-    needs: Deployment
-    steps:
-      # Cleanup Docker images
-      - name: Cleanup Docker images
-        run: |
           docker rm calc_api || true
           docker rmi ${{ secrets.DOCKER_USERNAME }}/devops:${{ needs.Docker.outputs.latest_tag }} || true
 
