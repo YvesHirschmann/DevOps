@@ -7,4 +7,4 @@ COPY target/classes ./classes
 COPY target/dependency ./dependency
 
 # Set the entrypoint to start the CalculatorApi HTTP server
-ENTRYPOINT ["java", "-cp", "classes:dependency/*", "de.fherfurt.fhe.CalculatorApi"]
+ENTRYPOINT ["java", "-cp", "classes:dependency/*", "de.fherfurt.fhe.SpringCalculatorApi"]

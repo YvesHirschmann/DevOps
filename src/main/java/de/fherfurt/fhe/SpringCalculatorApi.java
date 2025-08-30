@@ -9,14 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * This is a utility class and should not be instantiated.
  */
 @SpringBootApplication
-public final class SpringCalculatorApi {
+public class SpringCalculatorApi {
 
-    /**
-     * Private constructor to prevent instantiation.
-     */
-    private SpringCalculatorApi() {
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * Main method to start the Spring Boot application.

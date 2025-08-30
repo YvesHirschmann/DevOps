@@ -1,10 +1,10 @@
 package de.fherfurt.fhe;
 
-import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 /**
  * Service for calculator operations.
  */
-@NoArgsConstructor
+@Service
 public final class CalculatorApi {
 
 
