@@ -58,7 +58,7 @@ jobs:
         run: |
           echo "Running tests against the deployed application:"
           sleep 5
-          echo Test: a = 10; b = 10
+          echo "Test: a = 10; b = 10"
           echo "Addition:       $(curl -s 'http://localhost:8080/api/calculator/calculate?a=10&b=10&operation=%2B')"
           echo "Subtraction:    $(curl -s 'http://localhost:8080/api/calculator/calculate?a=10&b=10&operation=-')"
           echo "Multiplication: $(curl -s 'http://localhost:8080/api/calculator/calculate?a=10&b=10&operation=*')"
