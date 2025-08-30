@@ -70,7 +70,8 @@ jobs:
         with:
           name: app-jar
           path: target/
-        
+
+      # Download Coverage
       - name: Download Coverage
         uses: actions/download-artifact@v4
         with:
@@ -178,4 +179,4 @@ jobs:
         # Docker logout 
       - name: Docker Logout
         run: docker logout
-        continue-on-error: true
+        
