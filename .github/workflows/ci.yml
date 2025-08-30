@@ -60,14 +60,6 @@ jobs:
 
 
       # - - - Reporter - - -
-      # Coverage Report as Dashboard
-      - name: Coverage Report Dashboard
-        uses: dorny/test-reporter@v1
-        with:
-          name: Coverage-report
-          path: target/site/jacoco/jacoco.xml
-          reporter: jacoco
-
       # Test Report Dashboard
       - name: Test Report
         uses: dorny/test-reporter@v1
@@ -75,7 +67,6 @@ jobs:
           name: Surefire-report
           path: target/surefire-reports/*.xml
           reporter: java-junit
-
 
 
           
@@ -185,7 +176,6 @@ jobs:
 
 
   CleanUp:
-    needs: [Docker]
     runs-on: ubuntu-latest
     if: always()
     permissions:
@@ -198,8 +188,9 @@ jobs:
           name: |
             app-jar
             compiled-classes
-            coverage-report
+            coverage-report 
         continue-on-error: true
+        # coverage-report is already in sonar visible 
 
         # Docker logout 
       - name: Docker Logout
