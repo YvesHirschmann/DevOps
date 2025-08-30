@@ -32,7 +32,11 @@ jobs:
 
           echo "Latest semver tag: $LATEST_TAG"
           echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
-
+          if [ -z "$LATEST_TAG" ]; then
+            echo "No semver tag found!" >&2
+            exit 1
+          fi
+          
   Deployment:
     runs-on: ubuntu-latest
     needs: [Docker_setup]
