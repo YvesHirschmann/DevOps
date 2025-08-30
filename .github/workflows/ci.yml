@@ -108,8 +108,8 @@ jobs:
 
 
   Docker:
-      needs: [Build_and_Testing, Analyse]
-      runs-on: ubuntu-latest        
+      needs: [Analyse]
+      runs-on: ubuntu-latest
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
