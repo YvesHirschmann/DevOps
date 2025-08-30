@@ -122,9 +122,12 @@ jobs:
 
 
   Docker:
-    needs: [Build_and_Testing, Analyse]
-    runs-on: ubuntu-latest
-    steps:
+      needs: [Build_and_Testing, Analyse]
+      runs-on: ubuntu-latest
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      steps:
       # Checkout Repository
       - name: Checkout code
         uses: actions/checkout@v4
@@ -160,6 +163,8 @@ jobs:
           echo "Using Docker tag: ${{ github.event.inputs.version }}"
           mvn io.fabric8:docker-maven-plugin:0.41.0:build \
             io.fabric8:docker-maven-plugin:0.41.0:push \
+            -Ddocker.username=${DOCKER_USERNAME} \
+            -Ddocker.password=${DOCKER_PASSWORD} \
             -Ddocker.image.tag=${{ github.event.inputs.version }} \
             -DskipTests
 
