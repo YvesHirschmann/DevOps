@@ -71,9 +71,6 @@ jobs:
 
           
   Analyse:
-    permissions:
-      checks: write
-      contents: read
     needs: [Build_and_Testing]
     runs-on: ubuntu-latest
     steps:
@@ -122,14 +119,6 @@ jobs:
       # Checkstyle Lint
       - name: Run Checkstyle
         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=true
-
-      # Checkstyle Report Dashboard
-      - name: Checkstyle Report Dashboard
-        uses: dorny/test-reporter@v1
-        with:
-          name: Checkstyle-report
-          path: target/checkstyle-result.xml
-          reporter: checkstyle
 
 
   Docker:

@@ -46,7 +46,7 @@ jobs:
       # Pull latest Docker image
       - name: Pull Docker image
         run: |
-          echo "Pulling image: ${{ secrets.DOCKER_USERNAME }}/devops:${{ needs.Docker_setup.outputs.latest_tag }}"
+          echo "Pulling image"
           docker pull ${{ secrets.DOCKER_USERNAME }}/devops:${{ needs.Docker_setup.outputs.latest_tag }}
 
       # Deploy latest Docker image
