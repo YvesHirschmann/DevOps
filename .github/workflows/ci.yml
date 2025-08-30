@@ -49,11 +49,6 @@ jobs:
     needs: [Build_and_Testing]
     runs-on: ubuntu-latest
     steps:
-      # Checkout Repository
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       # Download JAR and Coverage
       - name: Download JAR
@@ -76,7 +71,8 @@ jobs:
             -Dsonar.projectKey=DevOpsCalc \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
+            -Dsonar.java.binaries=target/classes
 
       # Checkstyle Lint
       - name: Run Checkstyle
