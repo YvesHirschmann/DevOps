@@ -33,3 +33,4 @@ Die CD-Pipeline zieht das neueste Docker-Image von DockerHub, startet die Anwend
 3. **"Run workflow"** klicken
 
 Die Anwendung läuft in der GitHub Actions Umgebung.
+Der dazugehörige Sonaqube ist: https://sonarqube.ai.fh-erfurt.de/dashboard?id=DevOpsCalc
