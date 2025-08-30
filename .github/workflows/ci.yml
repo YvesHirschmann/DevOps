@@ -37,13 +37,6 @@ jobs:
 
 
       # - - - Artifact - - -
-      # Upload JAR as artifact
-      - name: Upload JAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-jar
-          path: target/*.jar
-
       # Upload Coverage as artifact
       - name: Upload Coverage
         uses: actions/upload-artifact@v4
@@ -79,13 +72,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      # Download JAR
-      - name: Download JAR
-        uses: actions/download-artifact@v4
-        with:
-          name: app-jar
-          path: target/
 
       # Download Coverage
       - name: Download Coverage
@@ -128,17 +114,6 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       steps:
-      # Checkout Repository
-      - name: Checkout code
-        uses: actions/checkout@v4
-    
-      # Download JAR artifact
-      - name: Download JAR
-        uses: actions/download-artifact@v4
-        with:
-          name: app-jar
-          path: target/
-        
       # Download compiled classes
       - name: Download compiled classes
         uses: actions/download-artifact@v4
@@ -181,7 +156,6 @@ jobs:
         uses: geekyeggo/delete-artifact@v4
         with:
           name: |
-            app-jar
             compiled-classes
             coverage-report 
         continue-on-error: true
