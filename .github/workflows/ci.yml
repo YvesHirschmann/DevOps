@@ -13,6 +13,9 @@ jobs:
 
   Build_and_Testing:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
     steps:
       # Checkout Repository
       - name: Checkout code
@@ -122,6 +125,9 @@ jobs:
 
 
   Docker:
+    permissions:
+      checks: write
+      contents: read
     needs: [Build_and_Testing, Analyse]
     runs-on: ubuntu-latest
     steps:
