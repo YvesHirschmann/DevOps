@@ -94,20 +94,13 @@ jobs:
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
-            -Dsonar.java.binaries=target/classes
-      
-        # SonarQube Quality Gate Check
-      - name: SonarQube Quality Gate Check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        with:
-          pollingTimeoutSec: 600
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+            -Dsonar.java.binaries=target/classes \
+            -Dsonar.qualitygate.wait=true \
+            -Dsonar.qualitygate.timeout=60
 
       # Checkstyle Lint
       - name: Run Checkstyle
-        run: mvn checkstyle:check
+        run: mvn checkstyle:check -Dcheckstyle.failOnViolation=true
         
       # Upload Checkstyle result as artifact
       - name: Upload Checkstyle result
