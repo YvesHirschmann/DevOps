@@ -1,6 +1,7 @@
 name: CD
 
 on:
+  # Trigger
   workflow_dispatch:
 
 jobs:
@@ -37,6 +38,7 @@ jobs:
             exit 1
           fi
           
+
   Deployment:
     runs-on: ubuntu-latest
     needs: [Docker_setup]

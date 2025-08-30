@@ -32,6 +32,14 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
+      # Test Report Dashboard
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        with:
+          name: test-report
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+
       # Upload JAR as artifact
       - name: Upload JAR
         uses: actions/upload-artifact@v4
@@ -64,7 +72,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Download JAR and Coverage
+      # Download JAR
       - name: Download JAR
         uses: actions/download-artifact@v4
         with:
@@ -103,21 +111,19 @@ jobs:
       # Checkstyle Lint
       - name: Run Checkstyle
         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=true
-        
-      # Upload Checkstyle result as artifact
-      - name: Upload Checkstyle result
-        uses: actions/upload-artifact@v4
+
+      # Checkstyle Report Dashboard
+      - name: Checkstyle Report Dashboard
+        uses: dorny/test-reporter@v1
         with:
-          name: checkstyle-result
+          name: checkstyle-report
           path: target/checkstyle-result.xml
+          reporter: checkstyle
 
 
   Docker:
     needs: [Build_and_Testing, Analyse]
     runs-on: ubuntu-latest
-    env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       # Checkout Repository
       - name: Checkout code
@@ -154,8 +160,6 @@ jobs:
           echo "Using Docker tag: ${{ github.event.inputs.version }}"
           mvn io.fabric8:docker-maven-plugin:0.41.0:build \
             io.fabric8:docker-maven-plugin:0.41.0:push \
-            -Ddocker.username=${{ env.DOCKER_USERNAME }} \
-            -Ddocker.password=${{ env.DOCKER_PASSWORD }} \
             -Ddocker.image.tag=${{ github.event.inputs.version }} \
             -DskipTests
 
