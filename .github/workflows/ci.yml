@@ -163,6 +163,8 @@ jobs:
     needs: [Docker]
     runs-on: ubuntu-latest
     if: always()
+    permissions:
+      actions: write
     steps:
       # Delete internal build artifacts
       - name: Delete internal build artifacts
@@ -173,7 +175,7 @@ jobs:
             compiled-classes
         continue-on-error: true
 
-      # Docker logout 
+        # Docker logout 
       - name: Docker Logout
         run: docker logout
         continue-on-error: true
