@@ -35,14 +35,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
-      # Test Report Dashboard
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        with:
-          name: test-report
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
 
+      # - - - Artifact - - -
       # Upload JAR as artifact
       - name: Upload JAR
         uses: actions/upload-artifact@v4
@@ -64,8 +58,31 @@ jobs:
           name: compiled-classes
           path: target/classes
 
+
+      # - - - Reporter - - -
+      # Coverage Report as Dashboard
+      - name: Coverage Report Dashboard
+        uses: dorny/test-reporter@v1
+        with:
+          name: Coverage-report
+          path: target/site/jacoco/jacoco.xml
+          reporter: jacoco
+
+      # Test Report Dashboard
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        with:
+          name: Surefire-report
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+
+
+
           
   Analyse:
+    permissions:
+      checks: write
+      contents: read
     needs: [Build_and_Testing]
     runs-on: ubuntu-latest
     steps:
@@ -119,15 +136,12 @@ jobs:
       - name: Checkstyle Report Dashboard
         uses: dorny/test-reporter@v1
         with:
-          name: checkstyle-report
+          name: Checkstyle-report
           path: target/checkstyle-result.xml
           reporter: checkstyle
 
 
   Docker:
-    permissions:
-      checks: write
-      contents: read
     needs: [Build_and_Testing, Analyse]
     runs-on: ubuntu-latest
     steps:
@@ -184,6 +198,7 @@ jobs:
           name: |
             app-jar
             compiled-classes
+            coverage-report
         continue-on-error: true
 
         # Docker logout 
