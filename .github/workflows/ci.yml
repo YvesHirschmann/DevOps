@@ -109,11 +109,16 @@ jobs:
 
   Docker:
       needs: [Build_and_Testing, Analyse]
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-latest        
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       steps:
+
+      # Checkout Repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       # Download compiled classes
       - name: Download compiled classes
         uses: actions/download-artifact@v4
