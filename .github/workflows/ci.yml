@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  # Trigger
   workflow_dispatch:
     inputs:
       version:
@@ -68,13 +69,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-jar
-          path: target/  # In target Ordner ablegen
+          path: target/
         
       - name: Download Coverage
         uses: actions/download-artifact@v4
         with:
           name: coverage-report
-          path: target/site/jacoco/  # An die richtige Stelle
+          path: target/site/jacoco/
 
       # Download compiled classes
       - name: Download compiled classes
@@ -128,14 +129,14 @@ jobs:
           name: app-jar
           path: target/
         
-      # Download compiled classes - FEHLT!
+      # Download compiled classes
       - name: Download compiled classes
         uses: actions/download-artifact@v4
         with:
           name: compiled-classes
           path: target/classes
         
-      # Prepare dependencies for Docker build - MUSS VOR dem Docker Build stehen!
+      # Prepare dependencies for Docker build
       - name: Copy dependencies for Docker
         run: mvn dependency:copy-dependencies -DskipTests
           
@@ -156,3 +157,23 @@ jobs:
             -Ddocker.password=${{ env.DOCKER_PASSWORD }} \
             -Ddocker.image.tag=${{ github.event.inputs.version }} \
             -DskipTests
+
+
+  CleanUp:
+    needs: [Docker]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      # Delete internal build artifacts
+      - name: Delete internal build artifacts
+        uses: geekyeggo/delete-artifact@v4
+        with:
+          name: |
+            app-jar
+            compiled-classes
+        continue-on-error: true
+
+      # Docker logout 
+      - name: Docker Logout
+        run: docker logout
+        continue-on-error: true
