@@ -55,15 +55,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-        
-      # Setup JDK 17 - auch hier benötigt
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
-        
+
       # Download JAR and Coverage
       - name: Download JAR
         uses: actions/download-artifact@v4
@@ -109,18 +101,10 @@ jobs:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
-      # Checkout Repository - WICHTIG!
+      # Checkout Repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Setup JDK 17
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
-        
       # Download JAR artifact wenn benötigt
       - name: Download JAR
         uses: actions/download-artifact@v4
