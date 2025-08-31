@@ -55,7 +55,7 @@ jobs:
       # - - - Reporter - - -
       # Test Report Dashboard
       - name: Test Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         with:
           name: Surefire-report
           path: target/surefire-reports/*.xml
@@ -107,6 +107,7 @@ jobs:
         run: mvn checkstyle:check -Dcheckstyle.failOnViolation=true
 
 
+
   Docker:
       needs: [Analyse]
       runs-on: ubuntu-latest
@@ -147,6 +148,7 @@ jobs:
             -Ddocker.password=${DOCKER_PASSWORD} \
             -Ddocker.image.tag=${{ github.event.inputs.version }} \
             -DskipTests
+
 
 
   CleanUp:
